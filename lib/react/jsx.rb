@@ -1,37 +1,23 @@
 require 'execjs'
-require 'react/source'
 require 'react/jsx/template'
+require 'react/jsx/jsx_transformer'
+require 'react/jsx/babel_transformer'
 require 'rails'
 
 module React
   module JSX
-    mattr_accessor :transform_options
+    DEFAULT_TRANSFORMER = BabelTransformer
+    mattr_accessor :transform_options, :transformer_class, :transformer
 
-    def self.context
-      # lazily loaded during first request and reloaded every time when in dev or test
-      unless @context && ::Rails.env.production?
-        contents =
-          # If execjs uses therubyracer, there is no 'global'. Make sure
-          # we have it so JSX script can work properly.
-          'var global = global || this;' +
+    # You can assign `React::JSX.transformer_class = `
+    # to provide your own transformer. It must implement:
+    # - #initialize(options)
+    # - #transform(code) => new code
+    self.transformer_class = DEFAULT_TRANSFORMER
 
-          # search for transformer file using sprockets - allows user to override
-          # this file in his own application
-          File.read(::Rails.application.assets.resolve('JSXTransformer.js'))
-
-        @context = ExecJS.compile(contents)
-      end
-
-      @context
-    end
-
-    def self.transform(code, options={})
-      js_options = {
-        stripTypes: options[:strip_types],
-        harmony: options[:harmony],
-      }
-      result = context.call('JSXTransformer.transform', code, js_options)
-      return result['code']
+    def self.transform(code)
+      self.transformer ||= transformer_class.new(transform_options)
+      self.transformer.transform(code)
     end
   end
 end

@@ -1,5 +1,6 @@
 module React
   module Rails
-    VERSION = '1.0.1.pre'
+    # If you change this, make sure to update VERSIONS.md
+    VERSION = '1.2.0'
   end
 end
