@@ -8,6 +8,83 @@
 
 #### Bug Fixes
 
+## 1.4.1 (October 23, 2015)
+
+#### Breaking Changes
+
+#### New Features
+
+#### Deprecation
+
+#### Bug Fixes
+
+- Minify & optimize the production build of React.js #380
+
+## 1.4.0 (October 22, 2015)
+
+#### Breaking Changes
+
+#### New Features
+
+- Include React.js 0.14
+
+#### Deprecation
+
+#### Bug Fixes
+
+## 1.3.3 (October 21, 2015)
+
+#### Breaking Changes
+
+#### New Features
+
+#### Deprecation
+
+#### Bug Fixes
+
+- Also support React 0.14 in `unmountComponents` #372
+- Use a fallback view helper in case a Rails controller wasn't used #375
+
+## 1.3.2 (October 13, 2015)
+
+#### Breaking Changes
+
+#### New Features
+
+- The UJS can mount and unmount components within a given DOM node #358
+- Support dropped-in React 0.14 in UJS #366
+
+#### Deprecation
+
+#### Bug Fixes
+
+## 1.3.1 (September 18, 2015)
+
+#### Breaking Changes
+
+#### New Features
+
+#### Deprecation
+
+#### Bug Fixes
+
+- Use controller lifecycle hooks for view helper (tests don't run middlewares) #356
+
+## 1.3.0 (September 15, 2015)
+
+#### Breaking Changes
+
+#### New Features
+
+- Render components directly from the controller with `render component: ...` #329
+- Provide a custom view helper with `config.react.view_helper_implementation` #346
+
+#### Deprecation
+
+#### Bug Fixes
+
+- Allow `react-rails` configs to be set in initializers #347
+
 ## 1.2.0 (August 19, 2015)
 
 #### Breaking Changes
